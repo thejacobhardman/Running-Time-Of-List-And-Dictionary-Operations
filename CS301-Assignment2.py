@@ -1,5 +1,6 @@
 #Assignment 2 - CS301
-#Created by Cody Cox
+#Outline Created by Cody Cox
+#Finished by Jacob Hardman
 
 import time
 
@@ -21,14 +22,12 @@ listData10k = list(open('data10k.txt').read().split())
 listData100k = list(open('data100k.txt').read().split())
 listData1m = list(open('data1m.txt').read().split())
 listData10m = list(open('data10m.txt').read().split())
-listData100m = list(open('data100m.txt').read().split())
 
 dictData1k = {}
 dictData10k = {}
 dictData100k = {}
 dictData1m = {}
 dictData10m = {}
-dictData100m = {}
 for line in listData1k:
     if line not in dictData1k:
         dictData1k[line] = 1
@@ -44,9 +43,6 @@ for line in listData1m:
 for line in listData10m:
     if line not in dictData10m:
         dictData10m[line] = 1
-for line in listData100m:
-    if line not in dictData100m:
-        dictData100m[line] = 1
 
 #List operations: (List is a collection which is ordered and changeable. Allows duplicate members)
 #append
