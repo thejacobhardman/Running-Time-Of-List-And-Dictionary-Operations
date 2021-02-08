@@ -2,7 +2,7 @@
 #Outline Created by Cody Cox
 #Finished by Jacob Hardman
 
-import time
+import time, random
 
 def bench(f,inp):
     t1 = time.time()
@@ -20,14 +20,14 @@ def bench(f,inp):
 listData1k = list(open('data1k.txt').read().split())
 listData10k = list(open('data10k.txt').read().split())
 listData100k = list(open('data100k.txt').read().split())
+listData500k = list(open('data500k.txt').read().split())
 listData1m = list(open('data1m.txt').read().split())
-listData10m = list(open('data10m.txt').read().split())
 
 dictData1k = {}
 dictData10k = {}
 dictData100k = {}
+dictData500k = {}
 dictData1m = {}
-dictData10m = {}
 for line in listData1k:
     if line not in dictData1k:
         dictData1k[line] = 1
@@ -37,12 +37,12 @@ for line in listData10k:
 for line in listData100k:
     if line not in dictData100k:
         dictData100k[line] = 1
+for line in listData500k:
+    if line not in dictData500k:
+        dictData100k[line] = 1
 for line in listData1m:
     if line not in dictData1m:
         dictData1m[line] = 1
-for line in listData10m:
-    if line not in dictData10m:
-        dictData10m[line] = 1
 
 #List operations: (List is a collection which is ordered and changeable. Allows duplicate members)
 #append
@@ -189,3 +189,8 @@ def dictSearch(data): #in operator for searching dictionaries appear to be const
         return True
     else:
         return False
+
+def main():
+    print("Running.")
+
+main()
