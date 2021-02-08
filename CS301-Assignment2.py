@@ -4,9 +4,9 @@
 
 import time
 
-def bench(f,inp):
+def bench(f, inp):
     t1 = time.time()
-    ans = f(inp)
+    f(inp)
     t2 = time.time()
     t = t2-t1
     return t
@@ -38,22 +38,122 @@ for line in listData1m:
     if line not in dictData1m:
         dictData1m[line] = 1
 
-listTimes = []
-dictTimes = []
+listOfLists = [listData1k, listData10k, listData100k, listData500k, listData1m]
+listOfDicts = [dictData1k, dictData10k, dictData100k, dictData500k, dictData1m]
+dataSize= [1000, 10000, 100000, 500000, 1000000]
 
-#List operations: (List is a collection which is ordered and changeable. Allows duplicate members)
-#append
-#remove
-#look 'in'
+def main():
+    f_out = open("AppendingToListsData.csv", "w+")
+    print("Testing Appending To Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listAppend, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
 
-#Dictionary operations: (Dictionary is a collection which is unordered and changeable. No duplicate members)
-#add key, value
-#remove key, value
-#look 'in'
+    f_out = open("InsertingToTheEndOfListsData.csv", "w+")
+    print("Testing Inserting To The End Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listInsertLast, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
 
-#This function converts the data 1k, 10k, and 100k to a list using the list() method
-def listBuild(data): #appears to be linear - O(n)
-    listData = list(open(data).read().split())
+    f_out = open("InsertingToTheBeginningOfListsData.csv", "w+")
+    print("Testing Inserting To Beginning Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listInsertFirst, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("InsertingToTheMiddleOfListsData.csv", "w+")
+    print("Testing Inserting In The Middle Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listInsertMiddle, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("RemovingLastValueOfListsData.csv", "w+")
+    print("Testing Removing Last Value Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listRemoveLast, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("RemovingFirstValueOfListsData.csv", "w+")
+    print("Testing Removing First Value Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listRemoveFirst, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("RemovingMiddleValueOfListsData.csv", "w+")
+    print("Testing Removing Middle Value Of Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listRemoveMiddle, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("SearchingListsData.csv", "w+")
+    print("Testing Seaching Lists:")
+    i = 0
+    for lists in listOfLists:
+        time = bench(listSearch, lists)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("AppendingValueToDictsData.csv", "w+")
+    print("Testing Appending Value To Dictionaries:")
+    i = 0
+    for dicts in listOfDicts:
+        time = bench(dictAppend, dicts)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("RemovingValuesFromDictsData.csv", "w+")
+    print("Testing Removing Values From Dictionaries:")
+    i = 0
+    for dicts in listOfDicts:
+        time = bench(dictRemove, dicts)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    f_out = open("SearchingDictsData.csv", "w+")
+    print("Testing Searching Dictionaries For Values:")
+    i = 0
+    for dicts in listOfDicts:
+        time = bench(dictSearch, dicts)
+        f_out.write(str(dataSize[i]) + ",")
+        f_out.write(str(time) + "\r\n")
+        i += 1
+    f_out.close()
+
+    print("\nAll benchmarks complete. Results have been written to CSV files.")
 
 #This function appends a number to lists of different sizes
 def listAppend(data): #appears to be linear - O(n)
@@ -94,20 +194,17 @@ def listSearch(data): #appears to be linear - O(n)
 
 #This function adds a key and value to dictionaries of different sizes
 def dictAppend(data): #adding a key and value to a dictionary appears to be constant
-    data[651612395876] = 1
+    data[651610] = 1
 
 #This function tries to remove a key from dictionaries of different sizes
 def dictRemove(data): #removing a key from a dictionary appears to be constant
-    data.pop(651612395876, None)
+    data.pop(651606, None)
 
 #This function searches for a key in dictionaries of different sizes - should be run after dictAppend
 def dictSearch(data): #in operator for searching dictionaries appear to be constant
-    if 651612395876 in data:
+    if 651616 in data:
         return True
     else:
         return False
-
-def main():
-    print("Running.")
 
 main()
