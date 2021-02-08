@@ -2,7 +2,7 @@
 #Outline Created by Cody Cox
 #Finished by Jacob Hardman
 
-import time, random
+import time
 
 def bench(f,inp):
     t1 = time.time()
@@ -10,12 +10,6 @@ def bench(f,inp):
     t2 = time.time()
     t = t2-t1
     return t
-
-#ToDo:
-#copy portions of lists mylist[:20k], mylist[:40k], mylist[:60k], ...
-#rather than using multiple data files, that way only 1 somewhat large data file is needed
-
-#run smaller iterations to extract more results - as shown in class, iterations of 10k up to 200k seem good
 
 listData1k = list(open('data1k.txt').read().split())
 listData10k = list(open('data10k.txt').read().split())
@@ -44,6 +38,9 @@ for line in listData1m:
     if line not in dictData1m:
         dictData1m[line] = 1
 
+listTimes = []
+dictTimes = []
+
 #List operations: (List is a collection which is ordered and changeable. Allows duplicate members)
 #append
 #remove
@@ -55,102 +52,40 @@ for line in listData1m:
 #look 'in'
 
 #This function converts the data 1k, 10k, and 100k to a list using the list() method
-#1k bench: 0.0
-#10k bench: 0.0010
-#100k bench: 0.0120
-#1m bench: 0.1640
-#10m bench: 1.5295
-#100m bench: 15.6375
 def listBuild(data): #appears to be linear - O(n)
     listData = list(open(data).read().split())
 
-#This function appends a number to lists of different sizes - NOTE: running this on the same list more than once runs significantly faster
-    #I.e: 100m bench 2nd time: 0.0
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0                                         
-#1m bench: 0.01701831817626953
-#10m bench: 0.1470329761505127
-#100m bench: 1.369307518005371
+#This function appends a number to lists of different sizes
 def listAppend(data): #appears to be linear - O(n)
     data.append(651612395876)
 
-#This function inserts an element at the end of lists of different sizes - NOTE: running this on the same list more than once runs significantly faster
-    #I.e: 100m bench 2nd time: 0.0
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0
-#1m bench: 0.013002634048461914
-#10m bench: 0.130936861038208
-#100m bench: 1.0292210578918457
+#This function inserts an element at the end of lists of different sizes
 def listInsertLast(data): #appears to be linear - O(n)
     data.insert(-1, 651612395876)
 
-#This function inserts an element at the beginning of lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 0.10252714157104492
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.002984762191772461
-#1m bench: 0.01401519775390625
-#10m bench: 0.1440427303314209
-#100m bench: 0.99920654296875
+#This function inserts an element at the beginning of lists of different sizes
 def listInsertFirst(data): #appears to be linear - O(n)
     data.insert(0, 651612395876)
 
-#This function inserts an element in the middle of lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 0.05102252960205078
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0
-#1m bench: 0.015014171600341797
-#10m bench: 0.1390514373779297
-#100m bench: 0.8201754093170166
+#This function inserts an element in the middle of lists of different sizes
 def listInsertMiddle(data): #appears to be linear - O(n)
     middle = int(len(data) / 2)
     data.insert(middle, 651612395876)
 
-#This function removes the last element from lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 1.475334882736206
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.010002374649047852
-#1m bench: 0.10202312469482422
-#10m bench: 1.1307294368743896
-#100m bench: 8.091892004013062
+#This function removes the last element from lists of different sizes
 def listRemoveLast(data): #appears to be linear - O(n)
     data.remove(data[-1])
 
-#This function removes the first element from lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 0.08701968193054199
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0020117759704589844
-#1m bench: 0.0170137882232666
-#10m bench: 0.19404387474060059
-#100m bench: 1.1422569751739502
+#This function removes the first element from lists of different sizes
 def listRemoveFirst(data): #appears to be linear - O(n)
     data.remove(data[1])
 
-#This function removes the middle element from lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 0.7801940441131592
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.006014585494995117
-#1m bench: 0.06602835655212402
-#10m bench: 0.656470775604248
-#100m bench: 2.717622756958008
+#This function removes the middle element from lists of different sizes
 def listRemoveMiddle(data): #appears to be linear - O(n)
     middle = int(len(data) / 2)
     data.remove(data[middle])
 
-#This function searches for the last element in lists of different sizes - NOTE: Running this on the same list more than onces runs significantly faster
-    #I.e: 100m bench 2nd time: 1.5620203018188477
-#1k bench: 0.0
-#10k bench: 0.0010139942169189453
-#100k bench: 0.011002540588378906
-#1m bench: 0.11146259307861328
-#10m bench: 1.139247179031372
-#100m bench: 4.848093032836914
+#This function searches for the last element in lists of different sizes
 def listSearch(data): #appears to be linear - O(n)
     if data[-1] in data:
         return True
@@ -158,32 +93,14 @@ def listSearch(data): #appears to be linear - O(n)
         return False
 
 #This function adds a key and value to dictionaries of different sizes
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0
-#1m bench: 0.0
-#10m bench: 0.0
-#100m bench: 0.0
 def dictAppend(data): #adding a key and value to a dictionary appears to be constant
     data[651612395876] = 1
 
 #This function tries to remove a key from dictionaries of different sizes
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0
-#1m bench: 0.0
-#10m bench: 0.0
-#100m bench: 0.0
 def dictRemove(data): #removing a key from a dictionary appears to be constant
     data.pop(651612395876, None)
 
 #This function searches for a key in dictionaries of different sizes - should be run after dictAppend
-#1k bench: 0.0
-#10k bench: 0.0
-#100k bench: 0.0
-#1m bench: 0.0
-#10m bench: 0.0
-#100m bench: 0.0
 def dictSearch(data): #in operator for searching dictionaries appear to be constant
     if 651612395876 in data:
         return True
