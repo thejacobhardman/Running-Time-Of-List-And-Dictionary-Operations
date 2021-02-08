@@ -1,6 +1,8 @@
 #Assignment 2 - CS301
 #Outline Created by Cody Cox
 #Finished by Jacob Hardman
+#2/7/2021
+#Dr. Nathaniel Miller
 
 import time
 
