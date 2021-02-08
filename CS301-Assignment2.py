@@ -170,53 +170,42 @@ def main():
 
     print("\nAll benchmarks complete. Results have been written to CSV files.")
 
-#This function appends a number to lists of different sizes
-def listAppend(data): #appears to be linear - O(n)
-    data.append(651612395876)
+def listAppend(data):
+    data.append(582394)
 
-#This function inserts an element at the end of lists of different sizes
-def listInsertLast(data): #appears to be linear - O(n)
-    data.insert(-1, 651612395876)
+def listInsertLast(data):
+    data.insert(-1, 489278)
 
-#This function inserts an element at the beginning of lists of different sizes
-def listInsertFirst(data): #appears to be linear - O(n)
-    data.insert(0, 651612395876)
+def listInsertFirst(data):
+    data.insert(0, 395835)
 
-#This function inserts an element in the middle of lists of different sizes
-def listInsertMiddle(data): #appears to be linear - O(n)
+def listInsertMiddle(data):
     middle = int(len(data) / 2)
-    data.insert(middle, 651612395876)
+    data.insert(middle, 583927)
 
-#This function removes the last element from lists of different sizes
-def listRemoveLast(data): #appears to be linear - O(n)
+def listRemoveLast(data):
     data.remove(data[-1])
 
-#This function removes the first element from lists of different sizes
-def listRemoveFirst(data): #appears to be linear - O(n)
+def listRemoveFirst(data):
     data.remove(data[1])
 
-#This function removes the middle element from lists of different sizes
-def listRemoveMiddle(data): #appears to be linear - O(n)
+def listRemoveMiddle(data):
     middle = int(len(data) / 2)
     data.remove(data[middle])
 
-#This function searches for the last element in lists of different sizes
-def listSearch(data): #appears to be linear - O(n)
+def listSearch(data):
     if data[-1] in data:
         return True
     else:
         return False
 
-#This function adds a key and value to dictionaries of different sizes
-def dictAppend(data): #adding a key and value to a dictionary appears to be constant
-    data[651610] = 1
+def dictAppend(data):
+    data[582956] = 1
 
-#This function tries to remove a key from dictionaries of different sizes
-def dictRemove(data): #removing a key from a dictionary appears to be constant
+def dictRemove(data):
     data.pop(651606, None)
 
-#This function searches for a key in dictionaries of different sizes - should be run after dictAppend
-def dictSearch(data): #in operator for searching dictionaries appear to be constant
+def dictSearch(data):
     if 651616 in data:
         return True
     else:
